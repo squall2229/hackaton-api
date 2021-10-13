@@ -1,0 +1,26 @@
+version: "3.9"
+
+services: 
+  api:
+    build: .
+    command: npm run start
+    restart: unless-stopped
+    ports: 
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - SECRET_KEY=fdjgjgfjkhjkdh
+      - MONGO_URL=mongodb+srv://squall:12345@auth.ncxlj.mongodb.net/auth?retryWrites=true&w=majority
+    depends_on:
+      - api_db
+
+  api_db:
+    image: mongo:latest
+    volumes:
+    - mongodb_api:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=squall
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+
+volumes:
+  mongodb_api:
