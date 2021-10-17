@@ -1,7 +1,8 @@
 const express = require("express")
 const path = require("path")
+const mongoose= require("mongoose")
 const uploadRouter = require("./routes/uploadRouter")
-const {port} = require("./config")
+const {port, mongoUrl} = require("./config")
 
 const app = express()
 
@@ -12,6 +13,8 @@ app.use("/upload", uploadRouter)
 
 const start = async () => {
   try {
+    await mongoose.connect(mongoUrl)
+    
     app.listen(port, () => {
       // eslint-disable-next-line no-console
       console.log(`server started on port ${port}`)
