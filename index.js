@@ -2,7 +2,6 @@ const express = require("express")
 const path = require("path")
 const cors = require('cors')
 const uploadRouter = require("./routes/uploadRouter")
-const {port} = require("./config")
 
 const app = express()
 
@@ -14,9 +13,9 @@ app.use("/upload", uploadRouter)
 
 const start = async () => {
   try {
-      app.listen(port, () => {
+      app.listen(3000, () => {
       // eslint-disable-next-line no-console
-      console.log(`server started on port ${port}`)
+      console.log(`server started on port ${3000}`)
     })
   } catch (error) {
     // eslint-disable-next-line no-console

@@ -6,7 +6,7 @@ class UploaderController {
       const {file} = req
 
       if (file) {
-        const data = await UploaderService.getTextByAudio(file);
+        const data = UploaderService.getTextByAudio(file);
 
         return res.json({ success: 1, data })
       } 
