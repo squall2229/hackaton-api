@@ -16,6 +16,10 @@ app.post("/test", (req, res) => {
   res.json({ data: mockData })
 })
 
+app.get("/test", (req, res) => {
+  res.json({ data: mockData })
+})
+
 const start = async () => {
   try {
       app.listen(3000, () => {
