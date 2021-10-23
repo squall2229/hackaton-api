@@ -15,7 +15,7 @@ class UploaderController {
     try {
      command
       .input(path.join(`${__dirname  }/../uploads/${req.file.originalname}`))
-      .save(path.join(`${__dirname  }/../uploads/${req.file.originalname.split(".").pop()}.wav`))
+      .save(path.join(`${__dirname  }/../uploads/${req.file.originalname.split(".")[0]}.wav`))
 
             // const {file} = req
 
