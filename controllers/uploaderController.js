@@ -13,6 +13,7 @@ const UploaderService = require("../services/UploaderService");
 class UploaderController {
   upload(req, res) {
     try {
+      console.log(req.file)
     //  command
     //   .input(path.join(`${__dirname  }/../uploads/${req.file.originalname}`))
     //   .save(path.join(`${__dirname  }/../uploads/${req.file.originalname.split(".").pop()}.wav`))
