@@ -2,6 +2,7 @@ const UploaderService = require("../services/UploaderService");
 
 class UploaderController {
   async upload(req, res) {
+    console.log("TICK")
     try {
       // const {file} = req
 
