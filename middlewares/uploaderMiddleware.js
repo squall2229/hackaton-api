@@ -5,10 +5,10 @@ const storage = multer.diskStorage({
     cb(null, "uploads/")
   },
   filename: (req, file, cb) => {
-    cb(null, `${file.fieldname  }-${  Date.now()  }.mp3`);
+    // cb(null, `${file.fieldname  }-${  Date.now()  }.mp3`);
     // const fileExt = file.originalname.split(".").pop();
     // const filename = `${new Date().getTime()}.${fileExt}`;
-    // cb(null, filename);
+    cb(null, file.originalname);
   },
 });
 

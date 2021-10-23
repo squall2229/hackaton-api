@@ -1,22 +1,21 @@
-// const path = require("path");
-// const ffmpeg = require('fluent-ffmpeg')
-// const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-// const ffprobePath = require('@ffprobe-installer/ffprobe').path;
+const path = require("path");
+const ffmpeg = require('fluent-ffmpeg')
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffprobePath = require('@ffprobe-installer/ffprobe').path;
 
 const UploaderService = require("../services/UploaderService");
 
-// ffmpeg.setFfmpegPath(ffmpegPath);
-// ffmpeg.setFfprobePath(ffprobePath);
+ffmpeg.setFfmpegPath(ffmpegPath);
+ffmpeg.setFfprobePath(ffprobePath);
 
-// const command = ffmpeg();
+const command = ffmpeg();
 
 class UploaderController {
   upload(req, res) {
     try {
-      console.log(req.file)
-    //  command
-    //   .input(path.join(`${__dirname  }/../uploads/${req.file.originalname}`))
-    //   .save(path.join(`${__dirname  }/../uploads/${req.file.originalname.split(".").pop()}.wav`))
+     command
+      .input(path.join(`${__dirname  }/../uploads/${req.file.originalname}`))
+      .save(path.join(`${__dirname  }/../uploads/${req.file.originalname.split(".").pop()}.wav`))
 
             // const {file} = req
 
