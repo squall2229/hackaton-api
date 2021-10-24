@@ -2,10 +2,9 @@ const UploaderService = require("../services/UploaderService");
 
 
 class UploaderController {
-  upload(req, res) {
+  async upload(req, res) {
     try {
-      console.log(req.file)
-      const data = UploaderService.getTextByAudio(req.file);
+      const data = await UploaderService.getTextByAudio(req.file);
       return  res.json({ success: 1, data })
     } catch (error) {
       return res.status(400).json({ message: "Ошибка при сохранении файла", success: 0 })
