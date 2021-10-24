@@ -4,6 +4,7 @@ const UploaderService = require("../services/UploaderService");
 class UploaderController {
   upload(req, res) {
     try {
+      console.log(req.file)
       const data = UploaderService.getTextByAudio(req.file);
       return  res.json({ success: 1, data })
     } catch (error) {
