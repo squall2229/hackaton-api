@@ -4,7 +4,7 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffprobePath = require('@ffprobe-installer/ffprobe').path;
 
 const { default: axios } = require("axios");
-const mockData = require("../__mock__/text.json");
+// const mockData = require("../__mock__/text.json");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 ffmpeg.setFfprobePath(ffprobePath);
@@ -40,8 +40,8 @@ class UploaderService {
       const responseForFrontend = await axios.post("http://localhost:5000", {
         text: "Тестовое предложение очень клево все"
       });
-      
-    return responseForFrontend.data
+      console.log(responseForFrontend)
+      return responseForFrontend.data
   }
 }
 
