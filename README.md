@@ -1,17 +1,30 @@
-# API service Hackathon
+# API service
 
-The node.js app for get text and docx.
+Сервис предоставляет API для взаимодействия с ASR, NLP сервисом, фронтендом и Docx.
 
-## start app
+- Конвертация `mp3` в `wav`
+- Отправка аудио в ASR сервис
+- Текст из ASR обрабатывается в NLP сервисе
+- Предоставление JSON данных для фронтенда
+- Конвертация и выгрузка данных в word (формат `docx`)
+
+
+## запуск
 
 dev
 ```js
 npm run dev
 ```
-
-production
+prod
 ```js
 npm start
 ```
 
-Server will be start in port `3000`. This app use [Sova-ASR](https://github.com/sovaai/sova-asr) for transform audio and [our service hack_DS](https://github.com/lvodoleyl/hack_DS) to improve the text. For starting you have to start Sova-Asr and Hack_Ds
+Для работоспособности сервиса необходимы:
+- [Sova-ASR](https://github.com/sovaai/sova-asr)
+- [NLP](https://github.com/lvodoleyl/hack_DS)
+
+Работает по адресу `https://api.wayapp.ml`
+
+- `/upload` - загрузка mp3 (Formdata: auido=file)
+- `/download` - экспорт в docx 
