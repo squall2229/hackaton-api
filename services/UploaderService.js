@@ -11,7 +11,7 @@ ffmpeg.setFfprobePath(ffprobePath);
 const command = ffmpeg();
 
 class UploaderService {
-  static async getTextByAudio(file) {
+  static getTextByAudio(file) {
     command
       .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
       .save(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`))
