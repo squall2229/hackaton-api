@@ -1,4 +1,5 @@
 const path = require("path");
+const FormData = require("form-data")
 const ffmpeg = require('fluent-ffmpeg')
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffprobePath = require('@ffprobe-installer/ffprobe').path;
@@ -37,9 +38,15 @@ class UploaderService {
       .save(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`))
 
      try {
+      const formData = new FormData();
+      formData.append('audio_blob', path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`));
+
       const response = await axios.post("http://192.168.1.4:8888/asr", {
-        audio_blob: path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)
-      })
+        formData
+      }, {
+          headers: formData.getHeaders()
+        }
+      )
       const {text} = response.data.r[0].response[0]
       
       const responseForFrontend = await axios.post("http://localhost:5000/", {
