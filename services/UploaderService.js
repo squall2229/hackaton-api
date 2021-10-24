@@ -52,9 +52,9 @@ class UploaderService {
           text: "Тестовое предложение очень клево все. Второе предложение",
         }
       })
-
+      console.log(response)
       const data = await response.json()
-
+      console.log(data)
       return data
   }
 }
