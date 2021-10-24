@@ -35,15 +35,27 @@ class UploaderService {
       // const response = await axios.post("http://localhost:8888/asr")
       // const {text} = response.data.r[0].response[0]
 
-      const responseForFrontend = await axios.post("http://localhost:5000/", {
-        text: "Тестовое предложение очень клево все"
-      }, {
+      // const responseForFrontend = await axios.post("http://localhost:5000/", {
+      //   text: "Тестовое предложение очень клево все"
+      // }, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   }
+      // });
+
+      const response = await fetch("http://localhost:5000/", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
+        },
+        body: {
+          text: "Тестовое предложение очень клево все. Второе предложение",
         }
-      });
+      })
 
-      return responseForFrontend.data
+      const data = await response.json()
+
+      return data
   }
 }
 
