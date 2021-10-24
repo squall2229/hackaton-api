@@ -1,9 +1,11 @@
+const nodeFetch = require('node-fetch');
+
 const path = require("path");
 const ffmpeg = require('fluent-ffmpeg')
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffprobePath = require('@ffprobe-installer/ffprobe').path;
 
-const { default: axios } = require("axios");
+// const { default: axios } = require("axios");
 // const mockData = require("../__mock__/text.json");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -44,7 +46,7 @@ class UploaderService {
       // });
 
      try {
-      const response = await fetch("http://localhost:5000/", {
+      const response = await nodeFetch("http://localhost:5000/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
