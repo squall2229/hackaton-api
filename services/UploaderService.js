@@ -43,6 +43,7 @@ class UploaderService {
       //   }
       // });
 
+     try {
       const response = await fetch("http://localhost:5000/", {
         method: "POST",
         headers: {
@@ -52,10 +53,12 @@ class UploaderService {
           text: "Тестовое предложение очень клево все. Второе предложение",
         }
       })
-      console.log(response)
       const data = await response.json()
-      console.log(data)
       return data
+
+     } catch (error) {
+       console.log(error)
+     }
   }
 }
 
