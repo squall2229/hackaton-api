@@ -35,7 +35,7 @@ class UploaderService {
       // const response = await axios.post("http://localhost:8888/asr")
       // const {text} = response.data.r[0].response[0]
 
-
+      console.log(file)
 
       const responseForFrontend = await axios.post("http://localhost:5000", {
         text: "Тестовое предложение очень клево все"
