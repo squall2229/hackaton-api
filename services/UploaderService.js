@@ -41,7 +41,7 @@ class UploaderService {
       const formData = new FormData();
       formData.append('audio_blob', path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`));
 
-      const response = await axios.post("http://109.252.80.132:8888/asr", {
+      const response = await axios.post("http://localhost:8888/asr", {
         formData
       }, {
           headers: formData.getHeaders()
