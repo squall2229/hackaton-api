@@ -1,11 +1,9 @@
-const nodeFetch = require('node-fetch');
-
 const path = require("path");
 const ffmpeg = require('fluent-ffmpeg')
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffprobePath = require('@ffprobe-installer/ffprobe').path;
 
-// const { default: axios } = require("axios");
+const { default: axios } = require("axios");
 // const mockData = require("../__mock__/text.json");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -34,30 +32,20 @@ class UploaderService {
       .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
       .save(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`))
 
+
+     try {
+
       // const response = await axios.post("http://localhost:8888/asr")
       // const {text} = response.data.r[0].response[0]
 
-      // const responseForFrontend = await axios.post("http://localhost:5000/", {
-      //   text: "Тестовое предложение очень клево все"
-      // }, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   }
-      // });
-
-     try {
-      const response = await nodeFetch("http://localhost:5000/", {
-        method: "POST",
+      const responseForFrontend = await axios.post("http://localhost:5000/", {
+        text: "Тестовое предложение очень клево все"
+      }, {
         headers: {
           "Content-Type": "application/json",
-        },
-        body: {
-          text: "Тестовое предложение очень клево все. Второе предложение",
         }
-      })
-      const data = await response.json()
-      return data
-
+      });
+      return responseForFrontend.data
      } catch (error) {
        console.log(error)
      }
