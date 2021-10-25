@@ -36,7 +36,7 @@ class UploaderService {
     command
       .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
       .audioChannels(1)
-      .save(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`))
+      .save(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}-${Date.now()}.wav`))
 
      try {
       // const formData = new FormData();
