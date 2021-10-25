@@ -49,6 +49,8 @@ class UploaderService {
       // )
 
       // const {text} = response.data.r[0].response[0]
+
+      console.log(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`))
       
       const responseForFrontend = await axios.post("http://localhost:3333/", {
         wav: path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)
