@@ -44,9 +44,11 @@ class DownloaderService {
     //   fs.writeFileSync(path.join(`${__dirname  }/${fileName}.docx`, buffer))
     // });
 
-    const b64string = await Packer.toBase64String(doc);
+    const buffer = await Packer.toBuffer(doc)
+
+    // const b64string = await Packer.toBase64String(doc);
      
-    return b64string
+    return buffer
   }
 }
 
