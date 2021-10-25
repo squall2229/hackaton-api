@@ -34,7 +34,7 @@ class DownloaderService {
           }),
 
           new Paragraph({
-            text: `\n ${text}`,
+            text: `\n ${text.replace(/[<LOC><PER><ORG>]/g, "")}`,
           }),
         ]
       }]
