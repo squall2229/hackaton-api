@@ -57,6 +57,9 @@ class UploaderService {
           "Content-Type": "application/json",
         }
       });
+
+      console.log(responseForFrontend)
+
       return responseForFrontend.data
      } catch (error) {
        console.log(error.message)
