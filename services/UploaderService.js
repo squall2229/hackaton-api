@@ -5,6 +5,7 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffprobePath = require('@ffprobe-installer/ffprobe').path;
 
 const { default: axios } = require("axios");
+const fs = require("fs");
 // const mockData = require("../__mock__/text.json");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -35,52 +36,33 @@ class UploaderService {
   static async getTextByAudio(file) {
      try {
       const fileWavName = path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)
-      let data;
 
       command
         .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
         .format("wav")
         .audioChannels(1)
         .save(fileWavName)
-        .on("end", async () => {
-          const responseForFrontend = await axios.post("http://localhost:3333/", {
-            "wav": `${fileWavName}`
-          }, {
-            headers: {
-              "Content-Type": "application/json",
-            }
-          });
-    
-          const response = await axios.post("http://localhost:5000/", {
-            "text": responseForFrontend.data.text
-          }, {
-            headers: {
-              "Content-Type": "application/json",
-            }
-          });
-    
-          data = response.data
-        })
 
-      return data
+      const testFile = await fs.readFile(fileWavName, 'utf8')
+      console.log(testFile)
 
-      // const responseForFrontend = await axios.post("http://localhost:3333/", {
-      //   "wav": `${fileWavName}`
-      // }, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   }
-      // });
+      const responseForFrontend = await axios.post("http://localhost:3333/", {
+        "wav": `${fileWavName}`
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
 
-      // const response = await axios.post("http://localhost:5000/", {
-      //   "text": responseForFrontend.data.text
-      // }, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   }
-      // });
+      const response = await axios.post("http://localhost:5000/", {
+        "text": responseForFrontend.data.text
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
 
-      // return response.data
+      return response.data
      } catch (error) {
        console.log(error)
      }
