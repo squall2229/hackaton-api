@@ -3,6 +3,6 @@ const DownloadController = require("../controllers/downloadController")
 
 const router = new Router()
 
-router.post("/", DownloadController.download)
+router.get("/", DownloadController.download)
 
 module.exports = router
