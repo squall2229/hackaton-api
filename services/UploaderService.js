@@ -43,8 +43,11 @@ class UploaderService {
         .audioChannels(1)
         .save(fileWavName)
 
-      const testFile = await fs.readFile(fileWavName, 'utf8')
-      console.log(testFile)
+      fs.readFile(fileWavName, 'utf8', (err, data) => {
+        console.log("err", err)
+        console.log("data", data)
+      })
+     
 
       const responseForFrontend = await axios.post("http://localhost:3333/", {
         "wav": `${fileWavName}`
