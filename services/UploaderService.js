@@ -33,10 +33,12 @@ const command = ffmpeg();
 
 class UploaderService {
   static async getTextByAudio(file) {
+    const fileWavName = path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}-${Date.now()}.wav`)
+
     command
       .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
       .audioChannels(1)
-      .save(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}-${Date.now()}.wav`))
+      .save(fileWavName)
 
      try {
       // const formData = new FormData();
@@ -52,7 +54,7 @@ class UploaderService {
       // const {text} = response.data.r[0].response[0]
 
       const responseForFrontend = await axios.post("http://localhost:3333/", {
-        "wav": `${path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)}`
+        "wav": `${fileWavName}`
       }, {
         headers: {
           "Content-Type": "application/json",
