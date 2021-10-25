@@ -38,20 +38,20 @@ class UploaderService {
       .save(path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`))
 
      try {
-      const formData = new FormData();
-      formData.append('audio_blob', path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`));
+      // const formData = new FormData();
+      // formData.append('audio_blob', path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`));
 
-      const response = await axios.post("http://localhost:8888/asr", {
-        formData
-      }, {
-          headers: formData.getHeaders()
-        }
-      )
+      // const response = await axios.post("http://localhost:8888/asr", {
+      //   formData
+      // }, {
+      //     headers: formData.getHeaders()
+      //   }
+      // )
 
-      const {text} = response.data.r[0].response[0]
+      // const {text} = response.data.r[0].response[0]
       
-      const responseForFrontend = await axios.post("http://localhost:5000/", {
-        text
+      const responseForFrontend = await axios.post("http://localhost:3333/", {
+        wav: path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)
       }, {
         headers: {
           "Content-Type": "application/json",
