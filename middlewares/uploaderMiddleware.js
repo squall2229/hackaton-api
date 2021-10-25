@@ -12,22 +12,22 @@ const storage = multer.diskStorage({
   },
 });
 
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "audio/mp3" || file.mimetype === "audio/mpeg") {
-    cb(null, true);
-  } else {
-    cb(
-      {
-        message: "Unsupported File Format",
-      },
-      false
-    );
-  }
-};
+// const fileFilter = (req, file, cb) => {
+//   if (file.mimetype === "audio/mp3" || file.mimetype === "audio/mpeg") {
+//     cb(null, true);
+//   } else {
+//     cb(
+//       {
+//         message: "Unsupported File Format",
+//       },
+//       false
+//     );
+//   }
+// };
 
 const uploader = multer({
   storage,
-  fileFilter,
+  // fileFilter,
 }).single("audio")
 
 module.exports = (req, res, next) => {

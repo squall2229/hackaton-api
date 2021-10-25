@@ -34,14 +34,14 @@ const command = ffmpeg();
 class UploaderService {
   static async getTextByAudio(file) {
      try {
-      const fileWavName = path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)
+      const fileWavName = path.join(`${__dirname  }/../uploads/${file.originalname}`)
 
-      await Promise.resolve(() => command
-        .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
-        .toFormat("wav")
-        .format("wav")
-        .audioChannels(1)
-        .save(fileWavName))     
+      // await Promise.resolve(() => command
+      //   .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
+      //   .toFormat("wav")
+      //   .format("wav")
+      //   .audioChannels(1)
+      //   .save(fileWavName))     
 
       const responseForFrontend = await axios.post("http://localhost:3333/", {
         "wav": `${fileWavName}`
