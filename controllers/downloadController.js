@@ -9,7 +9,7 @@ class DownloadController {
         text: req.body.text
       })
 
-      res.setHeader('Content-Disposition', 'attachment; filename=My Document.docx');
+      res.setHeader('Content-Disposition', 'attachment; filename=MyDocument.docx');
       res.download(Buffer.from(document));
     } catch (error) {
       return res.status(400).json({ message: error.message })
