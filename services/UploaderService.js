@@ -5,7 +5,6 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffprobePath = require('@ffprobe-installer/ffprobe').path;
 
 const { default: axios } = require("axios");
-const fs = require("fs");
 // const mockData = require("../__mock__/text.json");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -37,17 +36,12 @@ class UploaderService {
      try {
       const fileWavName = path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)
 
-      command
+      await Promise.resolve(() => command
         .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
+        .toFormat("wav")
         .format("wav")
         .audioChannels(1)
-        .save(fileWavName)
-
-      fs.readFile(fileWavName, 'utf8', (err, data) => {
-        console.log("err", err)
-        console.log("data", data)
-      })
-     
+        .save(fileWavName))     
 
       const responseForFrontend = await axios.post("http://localhost:3333/", {
         "wav": `${fileWavName}`
