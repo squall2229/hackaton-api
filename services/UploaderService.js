@@ -35,8 +35,9 @@ class UploaderService {
   static async getTextByAudio(file) {
      try {
       const fileWavName = path.join(`${__dirname  }/../uploads/${file.originalname.split(".")[0]}.wav`)
+      let data;
 
-      return command
+      command
         .input(path.join(`${__dirname  }/../uploads/${file.originalname}`))
         .format("wav")
         .audioChannels(1)
@@ -58,8 +59,10 @@ class UploaderService {
             }
           });
     
-          return response.data
+          data = response.data
         })
+
+      return data
 
       // const responseForFrontend = await axios.post("http://localhost:3333/", {
       //   "wav": `${fileWavName}`
