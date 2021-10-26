@@ -14,8 +14,8 @@ ffmpeg.setFfprobePath(ffprobePath);
 
 // const command = ffmpeg();
 
-const httpAgent = new http.Agent({ keepAlive: true, keepAliveMsecs: 60000 });
-const httpsAgent = new https.Agent({ keepAlive: true, keepAliveMsecs: 60000 });
+const httpAgent = new http.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000 });
+const httpsAgent = new https.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000 });
 
 class UploaderService {
   static async getTextByAudio(file) {
