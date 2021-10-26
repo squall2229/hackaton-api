@@ -14,7 +14,7 @@ ffmpeg.setFfprobePath(ffprobePath);
 
 // const command = ffmpeg();
 
-const httpAgent = new http.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000 });
+const httpAgent = new http.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000, maxSockets: Infinity, maxTotalSockets: Infinity });
 const httpsAgent = new https.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000 });
 
 class UploaderService {
@@ -28,17 +28,18 @@ class UploaderService {
       //   .format("wav")
       //   .audioChannels(1)
       //   .save(fileWavName))  
+
       const body  = JSON.stringify({
         "wav": `${fileWavName}`
       })
       
-      const responseForFrontend = await axios.post("http://localhost:3333/", body, {
+      const responseForFrontend = await axios.post("http://127.0.0.1:3333/", body, {
         httpAgent,
         httpsAgent,
         headers: {
           "Content-Type": "application/json",
-          // "Connection": "keep-alive",
-          'Content-Length': Buffer.byteLength(body)
+          "Connection": "keep-alive",
+          "Content-Length": Buffer.byteLength(body)
         }
       });
       console.log("response 3333", responseForFrontend.data.text)
@@ -56,9 +57,8 @@ class UploaderService {
       // console.log("response 5000", response.data)
 
       // return response.data
+      
      } catch (error) {
-       console.log("error", error)
-
        throw new Error(error)
      }
   }
