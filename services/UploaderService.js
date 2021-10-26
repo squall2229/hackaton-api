@@ -1,6 +1,6 @@
 const path = require("path");
-const http = require("http");
-const https = require("https")
+// const http = require("http");
+// const https = require("https")
 // const FormData = require("form-data")
 const ffmpeg = require('fluent-ffmpeg')
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -14,8 +14,8 @@ ffmpeg.setFfprobePath(ffprobePath);
 
 // const command = ffmpeg();
 
-const httpAgent = new http.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000, maxSockets: Infinity, maxTotalSockets: Infinity });
-const httpsAgent = new https.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000 });
+// const httpAgent = new http.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000, maxSockets: Infinity, maxTotalSockets: Infinity });
+// const httpsAgent = new https.Agent({ keepAlive: true, keepAliveMsecs: 60000, maxFreeSockets: 1000 });
 
 class UploaderService {
   static async getTextByAudio(file) {
@@ -36,6 +36,7 @@ class UploaderService {
       const responseForFrontend = await axios.post("http://127.0.0.1:3333/", body, {
         // httpAgent,
         // httpsAgent,
+        timeout: 1000 * 500,
         headers: {
           "Content-Type": "application/json",
           // "Content-Length": Buffer.byteLength(body)
