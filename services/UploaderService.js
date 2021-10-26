@@ -38,7 +38,7 @@ class UploaderService {
         // httpsAgent,
         headers: {
           "Content-Type": "application/json",
-          "Content-Length": Buffer.byteLength(body)
+          // "Content-Length": Buffer.byteLength(body)
         }
       });
       console.log("response 3333", responseForFrontend.data.text)
