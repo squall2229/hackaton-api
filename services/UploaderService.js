@@ -46,7 +46,9 @@ class UploaderService {
 
       return response.data
      } catch (error) {
-       console.log(error.message)
+       console.log("error", error)
+
+       throw new Error(error)
      }
   }
 }

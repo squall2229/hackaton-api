@@ -5,7 +5,12 @@ class UploaderController {
   async upload(req, res) {
     try {
       const data = await UploaderService.getTextByAudio(req.file);
-      return res.json({ success: 1, data })
+
+      if (data) {
+        return res.json({ success: 1, data })
+      } 
+
+      return res.status(400).json({ success: 0, message: "Что-то пошло не так" })
     } catch (error) {
       return res.status(400).json({ message: "Ошибка при сохранении файла", success: 0 })
     }
