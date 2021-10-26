@@ -34,17 +34,19 @@ class UploaderService {
       });
       console.log("response 3333", responseForFrontend.data.text)
 
-      const response = await axios.post("http://localhost:5000/", {
-        "text": responseForFrontend.data.text
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-          "Connection": "keep-alive"
-        }
-      });
-      console.log("response 5000", response.data)
+      return responseForFrontend.data
 
-      return response.data
+      // const response = await axios.post("http://localhost:5000/", {
+      //   "text": responseForFrontend.data.text
+      // }, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "Connection": "keep-alive"
+      //   }
+      // });
+      // console.log("response 5000", response.data)
+
+      // return response.data
      } catch (error) {
        console.log("error", error)
 
