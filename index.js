@@ -10,6 +10,12 @@ app.use(cors())
 
 app.use(express.json())
 app.use(express.static('public'));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, Authorization")
+
+  next()
+})
 app.use('/', express.static(path.join(`${__dirname  }public`)))
 app.use("/upload", uploadRouter)
 app.use("/download", downloadRouter)
