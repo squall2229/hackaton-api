@@ -12,6 +12,7 @@ class UploaderController {
 
       return res.status(400).json({ success: 0, message: "Что-то пошло не так" })
     } catch (error) {
+      console.log(error)
       return res.status(400).json({ message: "Ошибка при сохранении файла", success: 0 })
     }
   }
