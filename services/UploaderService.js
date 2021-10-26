@@ -23,14 +23,18 @@ class UploaderService {
       //   .toFormat("wav")
       //   .format("wav")
       //   .audioChannels(1)
-      //   .save(fileWavName))    
-      const responseForFrontend = await axios.post("http://localhost:3333/", {
+      //   .save(fileWavName))  
+      const body  = JSON.stringify({
         "wav": `${fileWavName}`
+      })
+      
+      const responseForFrontend = await axios.post("http://localhost:3333/", {
+        body
       }, {
         headers: {
           "Content-Type": "application/json",
-          "Connection": "keep-alive",
-          'Content-Length': Buffer.byteLength(fileWavName)
+          // "Connection": "keep-alive",
+          'Content-Length': Buffer.byteLength(body)
         }
       });
       console.log("response 3333", responseForFrontend.data.text)
