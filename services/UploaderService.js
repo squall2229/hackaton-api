@@ -32,9 +32,7 @@ class UploaderService {
         "wav": `${fileWavName}`
       })
       
-      const responseForFrontend = await axios.post("http://localhost:3333/", {
-        body
-      }, {
+      const responseForFrontend = await axios.post("http://localhost:3333/", body, {
         httpAgent,
         httpsAgent,
         headers: {
