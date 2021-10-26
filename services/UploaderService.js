@@ -32,7 +32,7 @@ class UploaderService {
           "Content-Type": "application/json",
         }
       });
-
+      console.log(responseForFrontend.data.text)
       const response = await axios.post("http://localhost:5000/", {
         "text": responseForFrontend.data.text
       }, {
@@ -43,7 +43,7 @@ class UploaderService {
 
       return response.data
      } catch (error) {
-       console.log(error)
+       console.log(error.message)
      }
   }
 }
