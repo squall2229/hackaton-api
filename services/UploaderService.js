@@ -29,7 +29,8 @@ class UploaderService {
       }, {
         headers: {
           "Content-Type": "application/json",
-          "Connection": "keep-alive"
+          "Connection": "keep-alive",
+          'Content-Length': Buffer.byteLength(fileWavName)
         }
       });
       console.log("response 3333", responseForFrontend.data.text)
