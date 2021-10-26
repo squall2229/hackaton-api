@@ -15,11 +15,10 @@ app.use("/download", downloadRouter)
 
 const start = async () => {
   try {
-      const server = app.listen(3000, () => {
+    app.listen(3000, () => {
       // eslint-disable-next-line no-console
       console.log(`server started on port ${3000}`)
     })
-    server.setTimeout(0)
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error)

@@ -34,29 +34,20 @@ class UploaderService {
       })
       
       const responseForFrontend = await axios.post("http://127.0.0.1:3333/", body, {
-        // httpAgent,
-        // httpsAgent,
-        timeout: 1000 * 500,
         headers: {
           "Content-Type": "application/json",
-          // "Content-Length": Buffer.byteLength(body)
         }
       });
-      console.log("response 3333", responseForFrontend.data.text)
 
-      return responseForFrontend.data
+      const response = await axios.post("http://localhost:5000/", {
+        "text": responseForFrontend.data.text
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
 
-      // const response = await axios.post("http://localhost:5000/", {
-      //   "text": responseForFrontend.data.text
-      // }, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "Connection": "keep-alive"
-      //   }
-      // });
-      // console.log("response 5000", response.data)
-
-      // return response.data
+      return response.data
       
      } catch (error) {
        throw new Error(error)
