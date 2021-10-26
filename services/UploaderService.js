@@ -1,5 +1,6 @@
 const path = require("path");
 const http = require("http");
+const https = require("https")
 // const FormData = require("form-data")
 const ffmpeg = require('fluent-ffmpeg')
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -14,6 +15,7 @@ ffmpeg.setFfprobePath(ffprobePath);
 // const command = ffmpeg();
 
 const httpAgent = new http.Agent({ keepAlive: true });
+const httpsAgent = new https.Agent({ keepAlive: true });
 
 class UploaderService {
   static async getTextByAudio(file) {
@@ -34,6 +36,7 @@ class UploaderService {
         body
       }, {
         httpAgent,
+        httpsAgent,
         headers: {
           "Content-Type": "application/json",
           // "Connection": "keep-alive",
