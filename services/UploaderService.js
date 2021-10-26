@@ -33,6 +33,7 @@ class UploaderService {
         }
       });
       console.log(responseForFrontend.data.text)
+      
       const response = await axios.post("http://localhost:5000/", {
         "text": responseForFrontend.data.text
       }, {
