@@ -1,4 +1,5 @@
 const express = require("express")
+const http = require("http")
 const path = require("path")
 const cors = require('cors')
 const uploadRouter = require("./routes/uploadRouter")
@@ -13,9 +14,11 @@ app.use('/', express.static(path.join(`${__dirname  }public`)))
 app.use("/upload", uploadRouter)
 app.use("/download", downloadRouter)
 
+const server = http.createServer(app);
+
 const start = async () => {
   try {
-    app.listen(3000, () => {
+    server.listen(3000, () => {
       // eslint-disable-next-line no-console
       console.log(`server started on port ${3000}`)
     })
