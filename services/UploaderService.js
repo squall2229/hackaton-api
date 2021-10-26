@@ -34,11 +34,10 @@ class UploaderService {
       })
       
       const responseForFrontend = await axios.post("http://127.0.0.1:3333/", body, {
-        httpAgent,
-        httpsAgent,
+        // httpAgent,
+        // httpsAgent,
         headers: {
           "Content-Type": "application/json",
-          "Connection": "keep-alive",
           "Content-Length": Buffer.byteLength(body)
         }
       });
